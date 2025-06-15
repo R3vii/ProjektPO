@@ -9,11 +9,11 @@ Prosty system konsolowy do zarządzania budynkiem/budynkami
 
 ### Funkcjonalność
 - Dodawanie i zarządzanie budynkami:
-  > Dodawanie nowych budynków
-  > Przeglądanie listy budynków
+  > Dodawanie nowych budynków,
+  > pzeglądanie listy budynków
 - Dodawanie i zarządzanie pokojami:
-  > Dodawanie pokoi do budynków
-  > Przeglądanie pokoi
+  > Dodawanie pokoi do budynków,
+  > przeglądanie pokoi
 - Zarządzanie i dodawanie urządzeń:
-  > Dodawanie urządzeń (światła i termostaty)
-  > Przeglądanie listy urządzeń w pokojach
+  > Dodawanie urządzeń (światła i termostaty),
+  > przeglądanie listy urządzeń w pokojach
