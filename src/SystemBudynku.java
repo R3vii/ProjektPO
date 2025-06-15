@@ -9,13 +9,37 @@ public class SystemBudynku {
     // Przeciążenie
     public void dodajBudynek() {
         System.out.print("Podaj nazwę budynku: ");
-        String name = scanner.nextLine();
+        String name = scanner.nextLine().trim();
+
+        if (name.isEmpty()) {
+            System.out.println("Błąd: Nazwa budynku nie może być pusta");
+            return;
+        }
+
+        if (czyBudynekIstnieje(name)) {
+            System.out.println("Błąd: Budynek o tej nazwie już istnieje");
+            return;
+        }
+
         bydyneks.add(new Budynek(name));
-        System.out.println("Dodano budynek");
+        System.out.println("Pomyślnie dodano budynek");
     }
+
+    // Sprawdza czy budynek o podanej nazwie już istnieje
+    private boolean czyBudynekIstnieje(String nazwa) {
+        for (Budynek budynek : bydyneks) {
+            if (budynek.getNazwa().equalsIgnoreCase(nazwa)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Przeciążona metoda (która dodaje budynek)
     public void dodajBudynek(String name) {
-        bydyneks.add(new Budynek(name));
+        if (!name.trim().isEmpty() && !czyBudynekIstnieje(name)) {
+            bydyneks.add(new Budynek(name));
+        }
     }
 
     // Wyświetlanie listy wszystkich budynków
@@ -45,11 +69,22 @@ public class SystemBudynku {
                 return;
             }
 
-            System.out.print("Podaj nazwę pomieszczenia: ");
-            String roomName = scanner.nextLine();
+            System.out.print("Podaj nazwę pokoju: ");
+            String roomName = scanner.nextLine().trim();
 
-            bydyneks.get(buildingIndex).dodajPokoj(new Pokoj(roomName));
-            System.out.println("Dodano pomieszczenie");
+            if (roomName.isEmpty()) {
+                System.out.println("Błąd: Nazwa pokoju nie może być pusta");
+                return;
+            }
+
+            Budynek wybranyBudynek = bydyneks.get(buildingIndex);
+            if (wybranyBudynek.czyPokojIstnieje(roomName)) {
+                System.out.println("Błąd: Pokój o tej nazwie już istnieje w tym budynku");
+                return;
+            }
+
+            wybranyBudynek.dodajPokoj(new Pokoj(roomName));
+            System.out.println("Dodano pokój");
         } catch (NumberFormatException e) {
             System.out.println("Spróbuj ponownie wpisać *liczbę*");
         }
@@ -75,11 +110,11 @@ public class SystemBudynku {
         }
     }
 
-    //Dodaje nowe urządzenie do wybranego pomieszczenia
+    //Dodaje nowe urządzenie do wybranego pokoju
     public void dodajUrzadzenia() {
         pokazPokoje();
         if (bydyneks.isEmpty()) {
-            System.out.println("Najpierw dodaj budynek i pomieszczenie");
+            System.out.println("Najpierw dodaj budynek i pokój");
             return;
         }
         try {
@@ -91,11 +126,11 @@ public class SystemBudynku {
                 return;
             }
 
-            System.out.print("Wybierz numer pomieszczenia: ");
+            System.out.print("Wybierz numer pokoju: ");
             int roomIndex = Integer.parseInt(scanner.nextLine()) - 1;
 
             if (roomIndex < 0 || roomIndex >= bydyneks.get(buildingIndex).getPokoje().size()) {
-                System.out.println("Nieprawidłowy numer pomieszczenia");
+                System.out.println("Nieprawidłowy numer pokoju");
                 return;
             }
 
