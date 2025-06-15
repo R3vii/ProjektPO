@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 //Klasa która reprezentuje budynek wraz z pomieszczeniami
+import java.util.ArrayList;
 public class Budynek {
     private String nazwa;
     private ArrayList<Pokoj> pokoje = new ArrayList<>(); //Lista pokoi które zawiera budynek
@@ -15,6 +15,16 @@ public class Budynek {
 
     public ArrayList<Pokoj> getPokoje() {
         return pokoje;
+    }
+
+    // Sprawdza czy pokój o podanej nazwie już istnieje w tym budynku
+    public boolean czyPokojIstnieje(String nazwaPokoju) {
+        for (Pokoj pokoj : pokoje) {
+            if (pokoj.getNazwa().equalsIgnoreCase(nazwaPokoju)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //dodawanie nowego pokoju do budynku
