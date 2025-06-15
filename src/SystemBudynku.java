@@ -1,9 +1,10 @@
+//Główna klasa systemu zarządzania budynkiem
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SystemBudynku {
-    private ArrayList<Budynek> bydyneks = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
+    private ArrayList<Budynek> bydyneks = new ArrayList<>(); //Lista wszystkich budynków
+    private Scanner scanner = new Scanner(System.in); //Skaner który służy do wprowadzania danych
 
     // Przeciążenie
     public void dodajBudynek() {
@@ -12,11 +13,12 @@ public class SystemBudynku {
         bydyneks.add(new Budynek(name));
         System.out.println("Dodano budynek");
     }
-
+    //Przeciążona metoda (która dodaje budynek)
     public void dodajBudynek(String name) {
         bydyneks.add(new Budynek(name));
     }
 
+    // Wyświetlanie listy wszystkich budynków
     public void pokazBudynki() {
         if (bydyneks.isEmpty()) {
             System.out.println("Brak budynków");
@@ -29,6 +31,7 @@ public class SystemBudynku {
         }
     }
 
+    //Metoda dodająca pomieszczenie do wybranego budynku
     public void dodajPokoj() {
         pokazBudynki();
         if (bydyneks.isEmpty()) return;
@@ -52,6 +55,7 @@ public class SystemBudynku {
         }
     }
 
+    //Metoda wyświetlająca listę pomieszczeń w wybranym budynku
     public void pokazPokoje() {
         pokazBudynki();
         if (bydyneks.isEmpty()) return;
@@ -71,6 +75,7 @@ public class SystemBudynku {
         }
     }
 
+    //Dodaje nowe urządzenie do wybranego pomieszczenia
     public void dodajUrzadzenia() {
         pokazPokoje();
         if (bydyneks.isEmpty()) {
@@ -124,6 +129,7 @@ public class SystemBudynku {
         }
     }
 
+    //Wyświetlanie listy urządzeń w wybranym pomieszczeniu
     public void pokazUrzadzenia() {
         pokazPokoje();
         if (bydyneks.isEmpty()) return;

@@ -1,11 +1,11 @@
 import java.util.Scanner;
-
+//Klasa która odpowiada za wyświetlanie menu
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
     private SystemBudynku systemBudynku = new SystemBudynku();
 
     public void start() {
-        while (true) {
+        while (true) { //nieskończono pętla, która wyświetla menu
             try {
                 System.out.println("\n=== System Zarządzania Budynkiem ===");
                 System.out.println("1. Dodaj budynek");
@@ -17,8 +17,9 @@ public class Menu {
                 System.out.println("0. Wyjście");
                 System.out.print("Wybierz opcję: ");
 
-                String choice = scanner.nextLine();
+                String choice = scanner.nextLine(); //Wybór dokonany przez użytkownika
 
+                //Obsługa wybranej opcji
                 switch (choice) {
                     case "1":
                         systemBudynku.dodajBudynek();
@@ -41,7 +42,7 @@ public class Menu {
                     case "0":
                         System.out.println("Koniec programu");
                         scanner.close();
-                        return;
+                        return; //Zakończenie programu
                     default:
                         System.out.println("Nieprawidłowy wybór! Wybierz 0-6");
                 }
