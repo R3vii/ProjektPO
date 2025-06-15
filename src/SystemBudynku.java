@@ -73,8 +73,10 @@ public class SystemBudynku {
 
     public void dodajUrzadzenia() {
         pokazPokoje();
-        if (bydyneks.isEmpty()) return;
-
+        if (bydyneks.isEmpty()) {
+            System.out.println("Najpierw dodaj budynek i pomieszczenie");
+            return;
+        }
         try {
             System.out.print("Wybierz numer budynku: ");
             int buildingIndex = Integer.parseInt(scanner.nextLine()) - 1;
@@ -94,6 +96,11 @@ public class SystemBudynku {
 
             System.out.print("Podaj typ urządzenia (swiatlo/termostat): ");
             String type = scanner.nextLine();
+
+            if (!type.equalsIgnoreCase("swiatlo") && !type.equalsIgnoreCase("termostat")) {
+                System.out.println("Wystąpił błąd, możesz wybrać jedną z dwóch opcji 'swiatlo' lub 'termostat'");
+                return;
+            }
 
             System.out.print("Podaj nazwę urządzenia: ");
             String name = scanner.nextLine();
